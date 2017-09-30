@@ -1,0 +1,27 @@
+{
+  "name": "tombornarel.net-backend",
+  "version": "1.0.0",
+  "description": "Backend for Tom Bornarel's website.",
+  "main": "source/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --experimental-modules ./source/index.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmilienD/tombornarel.net-backend.git"
+  },
+  "author": "EmilienD",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EmilienD/tombornarel.net-backend/issues"
+  },
+  "homepage": "https://github.com/EmilienD/tombornarel.net-backend#readme",
+  "devDependencies": {
+    "eslint": "^4.8.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "express": "^4.16.1"
+  }
+}
