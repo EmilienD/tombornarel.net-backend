@@ -4,7 +4,7 @@
   "description": "Backend for Tom Bornarel's website.",
   "main": "source/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./scripts/test.sh",
     "start": "pm2 start source/index.mjs --watch --node-args=\"--experimental-modules\" --name=tombserver"
   },
   "repository": {
@@ -18,12 +18,14 @@
   },
   "homepage": "https://github.com/EmilienD/tombornarel.net-backend#readme",
   "devDependencies": {
-    "eslint": "^4.8.0"
+    "eslint": "^4.8.0",
+    "faker": "^4.1.0"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.1",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "winston": "^2.3.1"
   }
 }
