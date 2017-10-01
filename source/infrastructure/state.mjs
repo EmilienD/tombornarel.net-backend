@@ -36,11 +36,11 @@ function getGalleries() {
   return get().galleries
 }
 
-function setGalleries(galleries) {
+async function setGalleries(galleries) {
   const currentState = get()
   const newState = Object.assign(currentState, {galleries})
-  return set(newState)
-  .then(state => state.galleries)
+  const storedState = await set(newState)
+  return storedState.galleries
 }
 
 function getProjects() {

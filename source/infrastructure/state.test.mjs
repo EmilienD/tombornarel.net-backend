@@ -3,7 +3,6 @@ import logger from 'winston'
 
 import state from './state'
 
-
 try{
   const currentState = state.get()
 
@@ -15,6 +14,9 @@ try{
   logger.error(`KO: couldn't get state:`, e)
 }
 logger.info('OK: got state as expected')
+
+// save current state
+const currentState = state.get()
 
 // define a state for reuse
 const aState = {
@@ -31,39 +33,39 @@ const aState = {
   }]
 }
 
-// save current state
-const currentState = state.get()
+async function stateSet(){
+  try {
+    // update state
+    const storedState = await state.set(aState)
+    // test operation result
+    assert.deepEqual(storedState, aState)
+    const storedStateAgain = state.get()
+    assert.deepEqual(storedStateAgain, storedState)
+    logger.info('OK: stored state as expected')
+  } catch (e) {
+    logger.error(`KO: couldn't store state properly:`, e)
+  }
 
-// update state
-state.set(aState)
-.then(storedState => {
-  // test operation result
-  assert.deepEqual(storedState, aState)
-  const storedStateAgain = state.get()
-  assert.deepEqual(storedStateAgain, storedState)
-  logger.info('OK: stored state as expected')
-})
-.catch(e => {
-  logger.error(`KO: couldn't store state properly:`, e)
-})
-.finally(() => {
   // restore state
   state.set(currentState)
-})
+}
 
-// update galleries
-state.setGalleries(aState.galleries)
-.then(galleries => {
-  // test operation result
-  assert.deepEqual(galleries, aState.galleries)
-  const storedGalleries = state.getGalleries()
-  assert.deepEqual(storedGalleries, galleries)
-  logger.info('OK: stored galleries as expected')
-})
-.catch(e => {
-  logger.error(`KO: couldn't store galleries properly:`, e)
-})
-.finally(() => {
+async function stateSetGalleries() {
+  try {
+    // update galleries
+    const galleries = await state.setGalleries(aState.galleries)
+    // test operation result
+    assert.deepEqual(galleries, aState.galleries)
+    const storedGalleries = state.getGalleries()
+    assert.deepEqual(storedGalleries, galleries)
+    logger.info('OK: stored galleries as expected')
+  } catch(e) {
+    logger.error(`KO: couldn't store galleries properly:`, e)
+  }
   // restore state
   state.set(currentState)
-})
+}
+
+// run tests
+stateSet()
+stateSetGalleries()
