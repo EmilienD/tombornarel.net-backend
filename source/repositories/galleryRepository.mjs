@@ -4,7 +4,8 @@ async function update(galleryName, galleryData) {
   const currentState = state.getGalleries()
   const newState = currentState
   .filter(gal => galleryName !== gal.name)
-  .push(galleryData)
+  .concat(galleryData)
+  
   const galleries = await state.setGalleries(newState)
   return galleries.filter(gal => galleryData.name === gal.name)[0]
 }
