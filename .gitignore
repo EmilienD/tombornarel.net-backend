@@ -58,5 +58,5 @@ typings/
 .env
 
 # state persistance file
-storage/**
+storage
 
