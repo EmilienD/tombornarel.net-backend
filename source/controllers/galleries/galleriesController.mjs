@@ -1,5 +1,7 @@
 import express from 'express'
 
+import { galleryService } from '../../services'
+
 const router = express.Router()
 
 router.route('/')
@@ -7,8 +9,9 @@ router.route('/')
   res.send('all galleries')
   next()
 })
-.post()
-.put()
-.delete()
+.post((req, res, next) => {
+  galleryService.add(req.body)
+  next()
+})
 
 export default router
