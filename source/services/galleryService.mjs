@@ -1,23 +1,23 @@
-import Promise from 'bluebird'
+import galleryRepository from '../repositories/galleryRepository'
 
-function add({name, index, projectArray = []}){
-  return Promise.resolve(`Added gallery ${name} at place ${index} containing projects ${projectArray.join(', ')}.`)
+function add(gallery){
+  return galleryRepository.add(gallery)
 }
 
-function update({originalName, newName, projectArray}) {
-  return Promise.resolve(`Updated gallery ${originalName}, now named ${newName} containing projects ${projectArray.join(', ')}.`)
+function update(originalName, gallery) {
+  return galleryRepository.update(originalName, gallery)
 }
 
-function remove({name}){
-  return Promise.resolve(`Deleted gallery ${name}`)
+function remove(gallery){
+  return galleryRepository.remove(gallery)
 }
 
-function get({name}) {
-  return Promise.resolve(`Here's gallery ${name}`)
+function get(gallery) {
+  return galleryRepository.get(gallery)
 }
 
 function getAll(){
-  return
+  return galleryRepository.getAll()
 }
 
 export default { add, update, remove, get, getAll }
