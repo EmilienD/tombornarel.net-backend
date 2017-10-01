@@ -7,7 +7,7 @@ const tommyBornyFabulousWebsitey = express()
 
 tommyBornyFabulousWebsitey.use(
   '/',
-  bodyParser.json(),
+  bodyParser.json({type: 'application/json'}),
   controllers
 )
 
