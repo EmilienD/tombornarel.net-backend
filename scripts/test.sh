@@ -7,7 +7,9 @@ rm $STATE_ROOT/state.json
 cp $STATE_ROOT/stateDefault.json $STATE_ROOT/state.json
 
 for TEST_FILE in $(find ./source -name *.test.mjs); do
+  echo "Starting $TEST_FILE"
   node --experimental-modules $TEST_FILE;
+  echo "Ending $TEST_FILE"
 done
 
 # restore state
