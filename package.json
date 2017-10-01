@@ -5,7 +5,7 @@
   "main": "source/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --experimental-modules ./source/index.mjs"
+    "start": "pm2 start source/index.mjs --watch --node-args=\"--experimental-modules\" --name=tombserver"
   },
   "repository": {
     "type": "git",
