@@ -1,8 +1,7 @@
 class StatePersistanceError extends Error {
   constructor(){
-    super()
+    super(...arguments)
     this.type = 'StatePersistanceError'
-    
   }
 }
 
