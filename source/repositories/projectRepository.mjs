@@ -1,4 +1,5 @@
 import state from '../infrastructure/state'
+import Project from '../models/Project'
 
 async function update(projectName, projectData) {
   const currentState = state.getProjects()
@@ -7,7 +8,8 @@ async function update(projectName, projectData) {
   .concat(projectData)
 
   const projects = await state.setProjects(newState)
-  return projects.filter(gal => projectData.name === gal.name)[0]
+  const projectDto = projects.filter(gal => projectData.name === gal.name)[0]
+  return new Project(projectDto)
 }
 
 async function remove({name}) {
@@ -28,16 +30,18 @@ async function add(project) {
 
   const newState = currentState.concat(project)
   const projects = await state.setProjects(newState)
-  return projects.filter(gal => gal.name === project.name)[0]
+  const projectDto = projects.filter(gal => gal.name === project.name)[0]
+  return new Project(projectDto)
 }
 
 function get({name}) {
   const projects = state.getProjects()
-  return projects.filter(project => project.name === name)[0]
+  const projectDto = projects.filter(project => project.name === name)[0]
+  return new Project(projectDto)
 }
 
 function getAll() {
-  return state.getProjects()
+  return state.getProjects().map(dto => new Project(dto))
 }
 
 export default { update, remove, add, get, getAll }
