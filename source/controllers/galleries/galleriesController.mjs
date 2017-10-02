@@ -4,7 +4,7 @@ import { galleryService } from '../../services'
 
 const router = express.Router()
 
-async function addGalleryMidleware(req, res, next) {
+async function addGalleryMiddleware(req, res, next) {
   res.send(await galleryService.add(req.body))
   next()
 }
@@ -15,6 +15,6 @@ router.route('/')
   res.send(galleries)
   next()
 })
-.post(addGalleryMidleware)
+.post(addGalleryMiddleware)
 
 export default router

@@ -1,14 +1,21 @@
 import express from 'express'
 
+import {projectService, galleryService} from '../services'
+import notImplementedMiddleware from '../util/notImplementedMiddleware'
+
 const router = express.Router()
 
 router.route('/')
 .get((req, res, next) => {
-  res.send({state: 'haha'})
+  const everything = {
+    galleries: galleryService.getAll(),
+    projects: projectService.getAll(),
+  }
+  res.send(everything)
   next()
 })
-.post()
-.put()
-.delete()
+.post(notImplementedMiddleware)
+.put(notImplementedMiddleware)
+.delete(notImplementedMiddleware)
 
 export default router
