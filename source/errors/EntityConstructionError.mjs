@@ -6,6 +6,8 @@ class EntityConstructionError extends Error {
     : ''
     super(message)
     this.type = 'EntityConstructionError'
+    this.status = 400
+    this.httpMessage = `Wrong payload.${target && suspect ? ` It seems you mistook a ${suspect} and a ${target}`: ''}`
   }
 }
 
