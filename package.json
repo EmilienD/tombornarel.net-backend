@@ -5,7 +5,9 @@
   "main": "source/index.js",
   "scripts": {
     "test": "./scripts/test.sh",
-    "start": "pm2 start source/index.mjs --watch --node-args=\"--experimental-modules\" --name=tombserver"
+    "start": "pm2 start source/index.mjs --watch --node-args=\"--experimental-modules\" --name=tombserver",
+    "hash": "node --experimental-modules ./scripts/hashPassword.mjs",
+    "verify": "node --experimental-modules ./scripts/verifyPassword.mjs"
   },
   "repository": {
     "type": "git",
@@ -22,6 +24,7 @@
     "faker": "^4.1.0"
   },
   "dependencies": {
+    "argon2": "^0.16.1",
     "bluebird": "^3.5.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.1",
